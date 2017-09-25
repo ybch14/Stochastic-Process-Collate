@@ -1,0 +1,308 @@
+\setcounter{chapter}{0}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+\chapter{马尔科夫过程}
+
+\section{计算平稳分布}
+
+\subsection{\hyperref[Q2007-2]{【2007-2】}}\label{A2007-2}
+
+P(前出后入)=P(前出前入)=P(后出后入)=P(后出前入)=1/4。定义状态空间 $\{(F(n), B(n)), n=0, 1, 2, \dots\}$，其中 $F(n)$ 和 $B(n)$ 分别为前后门的鞋的个数。则有一步转移概率矩阵：
+$$
+P=
+\bordermatrix{
+~ & (0, N) & (1, N-1) & (2, N-2) & \dots & (N, 0) \cr
+(0, N) & 3/4 & 1/4\cr
+(1, N-1) & 1/4 & 1/2 & 1/4 \cr
+\dots & & & \dots &\cr
+(N, 0) & & & & 1/4 & 3/4 \cr
+}
+$$
+由 $P$ 可求得平稳分布：
+$$
+\pi=\pi P \rightarrow
+\begin{cases}
+\pi_1 = \frac{3}{4}\pi_1 + \frac{1}{4}\pi_2 \\
+\pi_2 = \frac{1}{4}\pi_1 + \frac{1}{2}\pi_2 + \frac{1}{4}\pi_3 \\
+\vdots \\
+\pi_{n+1} = \frac{1}{4}\pi_{n} + \frac{3}{4}\pi_{n+1} \\
+\pi_1+\pi_2+\dots +\pi_{n+1} = 1
+\end{cases}
+\rightarrow \pi_1=\pi_2=\dots=\pi_{n+1}=\frac{1}{N+1}
+$$
+$\therefore$ P(光脚跑步) = P(状态为$(0, N)$且走前门) + P(状态为$(N,0)$且走后门)=$\frac{1}{N+1}\times\frac{1}{2} + \frac{1}{N+1}\times\frac{1}{2} = \frac{1}{N+1}$
+
+\subsection{\hyperref[Q2014-7]{【2014-7】}}\label{A2014-7}
+
+定义状态空间 $\{X(n), n=0, 1, 2, \dots\}$，$X(n)$ 为第 n 次出门（不区分上下班）之前手边的雨伞数量。则
+一步转移概率矩阵为
+$$
+P=\bordermatrix{
+	~ & 0 & 1 & 2 & 3 \cr
+	0 &   &   &   & 1 \cr
+	1 &   &   & 1-p & p \cr
+	2 &   & 1-p & p & \cr
+	3 & 1-p & p \cr
+}
+$$
+由 $P$ 可求得平稳分布：
+$$
+\pi=\pi P \rightarrow
+\begin{cases}
+\pi_0 = (1-p)\pi_3 \\
+\pi_1 = (1-p)\pi_2 + p\pi_3 \\
+\pi_2 = (1-p)\pi_1 + p\pi_2 \\
+\pi_3 = \pi_0 + p\pi_1 \\
+\pi_0+\pi_1+\pi_2+\pi_3 = 1
+\end{cases}
+\rightarrow \pi_0=\frac{1-p}{4-p},\ \pi_1=\pi_2=\pi_3=\frac{1}{4-p}
+$$
+由 $\pi_n\neq0$ 可知常返。
+$\therefore$ P(淋雨) = P(出门前手边没有伞且下雨) = $\pi_0\times p$ = $\frac{(1-p)p}{4-p}$。
+
+\subsection{\hyperref[Q4-26]{【习题集 4-26】}}\label{A4-26}
+
+状态空间的定义同上题，则一步概率转移矩阵为：
+$$
+P=\bordermatrix{
+	~ & 0 & 1 & \dots & r \cr
+	0 &   &   &   & 1 \cr
+	1 &   &   & 1-p & p \cr
+	2 &   & 1-p & p & \cr
+	\dots &  & \dots & \cr
+	r & 1-p & p \cr
+}
+$$
+由 $P$ 可求得平稳分布：
+$$
+\pi=\pi P \rightarrow
+\begin{cases}
+\pi_0 = (1-p)\pi_r \\
+\pi_1 = (1-p)\pi_{r-1} + p\pi_{r} \\
+\dots \\
+\pi_r = \pi_0 + p\pi_1 \\
+\pi_0+\pi_1+\dots+\pi_r = 1
+\end{cases}
+\rightarrow \pi_0=\frac{1-p}{1+r-p},\ \pi_1=\dots=\pi_r=\frac{1}{1+r-p}
+$$
+$\therefore$ P(淋雨) = $\pi_0\times p$ = $\frac{(1-p)p}{1+r-p} < \frac{(1-p)p}{r} \le \frac{1}{4r}$。
+
+\subsection{\hyperref[Q2010-4]{【2010-4】}}\label{A2010-4}
+
+定义状态空间 $\{X(n),Y(n), n=0, 1, 2, \dots\}$，$X(n),Y(n)$ 为第 n 次比赛的交手双方。则一步转移概率矩阵为：
+$$
+P=\bordermatrix{
+	~ & AB & AC & BC \cr
+	AB & 0 & \frac{S_A}{S_A+S_B} & \frac{S_B}{S_A+S_B} \cr
+	AC & \frac{S_A}{S_A+S_C} & 0 & \frac{S_C}{S_A+S_C} \cr
+	BC & \frac{S_B}{S_B+S_C} & \frac{S_C}{S_B+S_C} & 0 \cr
+}
+$$
+由 $P$ 可求得平稳分布：
+\begin{equation}
+\begin{split}
+\pi=\pi P &\rightarrow
+\begin{cases}
+\pi_1 = \frac{S_A}{S_A+S_C}\pi_2 + \frac{S_B}{S_B+S_C}\pi_3 \\
+\pi_2 = \frac{S_A}{S_A+S_B}\pi_1 + \frac{S_C}{S_B+S_C}\pi_3 \\
+\pi_3 = \frac{S_B}{S_A+S_B}\pi_0 + \frac{S_C}{S_A+S_C}\pi_1 \\
+\pi_1+\pi_2+\pi_3 = 1
+\end{cases}
+\rightarrow
+\begin{cases}
+\pi_1 = \frac{1}{2}\frac{S_A+S_B}{S_A+S_B+S_C}\\
+\pi_2 = \frac{1}{2}\frac{S_A+S_C}{S_A+S_B+S_C}\\
+\pi_3 = \frac{1}{2}\frac{S_B+S_C}{S_A+S_B+S_C}\\
+\end{cases}
+\\
+& \rightarrow
+\begin{cases}
+\eta_A = \frac{\pi_1+\pi_2}{\pi_1+\pi_2+\pi_3} = \frac{1}{2}\frac{2S_A+S_B+S_C}{S_A+S_B+S_C}\\
+\eta_B = \frac{\pi_1+\pi_3}{\pi_1+\pi_2+\pi_3} = \frac{1}{2}\frac{S_A+2S_B+S_C}{S_A+S_B+S_C}\\
+\eta_C = \frac{\pi_2+\pi_3}{\pi_1+\pi_2+\pi_3} = \frac{1}{2}\frac{S_A+S_B+2S_C}{S_A+S_B+S_C}\\
+\end{cases}
+\end{split}
+\tag*{}
+\end{equation}
+
+\subsection{\hyperref[Q4-20]{【习题集4-20】}}\label{A4-20}
+
+（1）$E=\{-2, -1, 0, 1, 2\}$
+
+（2）
+$$
+P=\bordermatrix{
+	~ & -2 & -1 & 0 & 1 & 2 \cr
+	-2 & 1 & \cr
+	-1 & q & r & p \cr
+	0 & & q & r & p & \cr
+	1 & & & q & r & p \cr
+	2 & & & & & 1\cr
+}
+$$
+
+（3）
+$$
+P^{(2)}=\bordermatrix{
+	~ & -2 & -1 & 0 & 1 & 2 \cr
+	-2 & 1 & \cr
+	-1 & q+pr & r^2+pq & (p+q)r & p^2\cr
+	0 & q^2 & 2qr & 2pq+r^2 & 2pr & p^2\cr
+	1 & & q^2 & 2qr & pq+r^2 & pr+p \cr
+	2 & & & & & 1\cr
+}
+$$
+
+（4）$P_{1\rightarrow2}=pr+p$
+
+\subsection{\hyperref[Q2010-6]{【2010-6】}}\label{A2010-6}
+
+$\pi=\pi P \rightarrow 
+\begin{cases}\pi_i = \sum_j \pi_j \frac{1}{d(j)} \\
+\sum_i \pi_i =1
+\end{cases}
+\rightarrow \pi_i = \frac{d(i)}{\sum_i d(i)}$
+
+\subsection{\hyperref[Q2009-5]{【2009-5】}}\label{A2009-5}
+
+一步概率转移概率矩阵：
+$$
+P=\bordermatrix{
+	~ & E & M & H \cr
+	E & 0.1 & 0.9 & 0 \cr
+	M & 1-\alpha & 0 & \alpha \cr
+	H & 0 & 0.9 & 0.1 \cr
+}
+$$
+由 $P$ 可求得平稳分布：
+$$
+\pi=\pi P\rightarrow
+\begin{cases}
+\pi_1=0.1\pi_1 + (1-\alpha)\pi_2 \\
+\pi_2=0.9\pi_1 + 0.9\pi_3\\
+\pi_3=\alpha\pi_2+0.1\pi_3\\
+\pi_1+\pi_2+\pi_3=1
+\end{cases}
+\rightarrow\pi_2=\frac{0.9}{1.9}
+$$
+所以无法调节。
+
+\subsection{\hyperref[Q2007-1]{【2007-1】}}\label{A2007-1}
+
+一步概率转移概率矩阵：
+$$
+P=\bordermatrix{
+	~ & 0 & 1 & 2 & \dots & \dots & \dots & 12 \cr
+	0 & 0 & 1/6 & 1/6 & \dots & 0 & \dots & 0 \cr
+	1 & 0 & 0 & 1/6 & \dots & 1/6 & \dots & 0 \cr
+	\dots & &&&\dots \cr
+	11 & 1/6 & 1/6 & 1/6 & \dots & 0 & \dots & 1/6 \cr
+	12 & 1/6 & 1/6 & \dots & 1/6 & 0 & \dots & 0 \cr
+}
+$$
+由 $P$ 可求得平稳分布：
+$$
+\pi=\pi P\rightarrow
+\begin{cases}
+\pi_0=\frac{1}{6}(\pi_7 + \dots + \pi_{12}) \\
+\dots \\
+\pi_{12}=\frac{1}{6}(\pi_6 + \dots + \pi_{11})\\
+\pi_0+\dots+\pi_{12}=1
+\end{cases}
+\rightarrow\pi_0=\pi_1=\dots=\pi_{12}=\frac{1}{13}
+$$
+$\therefore \lim_{n\rightarrow\infty}P(Y_n = 0 \mod 13)=\frac{1}{13}$
+\\\\
+\section{判断常返性}
+
+\subsection{\hyperref[Q2014-9]{【2014-9】}}\label{A2014-9}
+
+状态转移图如下：
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=6in]{M1.jpg}
+\end{figure}
+从状态转移图中可以看出，0，1，2，3，4 非常返，5 常返。
+
+\section{计算分布 $\vec V_n$}
+
+\subsection{\hyperref[Q2008-7]{【2008-7】}}\label{A2008-7}
+
+定义状态为硬币的编号，则容易写出一步转移概率矩阵：
+$$
+P=
+\left(\begin{matrix}
+p & 1-p \\ 1-p & p
+\end{matrix}\right)
+$$
+由 $P$ 可求得平稳分布：
+$$
+\pi=\pi P\rightarrow
+\begin{cases}
+\pi_1=p\pi_1 + (1-p)\pi_2\\
+\pi_{2}=(1-p)\pi_1 + p\pi_{2}\\
+\pi_1+\pi_{2}=1
+\end{cases}
+\rightarrow\pi_1=\pi_2=\frac{1}{2}
+$$
+$\therefore$（1）足够长时间后抛掷硬币 1 的概率为 $\frac{1}{2}$。
+
+对 $P$ 做对角化：
+$$
+P=\left(\begin{matrix}p & 1-p \\ 1-p & p\end{matrix}\right)
+=\left(\begin{matrix}\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2}\end{matrix}\right)
+\left(\begin{matrix}1 & 0 \\ 0 & 2p-1\end{matrix}\right)
+\left(\begin{matrix}\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2}\end{matrix}\right)
+$$
+所以有
+$$
+P^{(n)}=\left(\begin{matrix}\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2}\end{matrix}\right)
+\left(\begin{matrix}1 & 0 \\ 0 & (2p-1)^n\end{matrix}\right)
+\left(\begin{matrix}\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2}\end{matrix}\right)
+=\left(\begin{matrix}\frac{1}{2}+\frac{1}{2}(2p-1)^n & \frac{1}{2}-\frac{1}{2}(2p-1)^n \\ \frac{1}{2}-\frac{1}{2}(2p-1)^n & \frac{1}{2}+\frac{1}{2}(2p-1)^n\end{matrix}\right)
+$$
+$\therefore$（2）所求概率为 $P_{12}^{(4)}P_{22}P_{22}P_{22}^{(3)}P_{22}P_{22}$
+
+\subsection{\hyperref[Q4-35]{【习题集 4-35】}}\label{A4-35}
+
+（1）
+$$
+P=\left(\begin{matrix}p & 1-p \\ 1-p & p\end{matrix}\right)
+$$
+
+（2）
+$$
+P^{(n)}=\left(\begin{matrix}\frac{1}{2}+\frac{1}{2}(2p-1)^n & \frac{1}{2}-\frac{1}{2}(2p-1)^n \\ \frac{1}{2}-\frac{1}{2}(2p-1)^n & \frac{1}{2}+\frac{1}{2}(2p-1)^n\end{matrix}\right)
+$$
+
+（3）
+$$
+\pi_1=\pi_2=\frac{1}{2}
+$$
+
+\section{计算吸收概率}
+
+\subsection{\hyperref[Q4-34]{【习题集 4-34】}}\label{A4-34}
+
+（1）
+状态空间为 $E=\{0, 1, \dots, a+b\}$
+状态转移矩阵为
+$$
+P=\bordermatrix{
+	~ & 0 & 1 & 2 & \dots & a+b \cr
+	0 & 1 &   &   &  \cr
+	1 & 1/2 &   & 1/2 &  \cr
+	2 &   & 1/2 &  & 1/2 \cr
+	\dots & & & \dots & \cr
+	a+b &&&&& 1 \cr
+}
+$$
+
+（2）
+记 $f_i$ 为从状态 i 到状态 0 （输光）的概率。$f_0=1, f_{a+b}=0$。由条件概率可知，$f_i=\frac{1}{2}f_{i+1}+\frac{1}{2}f_{i-1}$
+$\therefore f_{i+1}-f_i=f_i-f_{i-1}, \dots, f_2-f_1=f_1-f_0=f_1-1 \rightarrow f_{a+b}-f_1=(a+b-1)(f_1-1)$
+
+\noindent
+$\therefore f_1=\frac{a+b-1}{a+b}$
+$\therefore f_a-f_1=(a-1)(f_1-1)\rightarrow f_a=(a-1)(f_1-1)+f_1=\frac{b}{a+b}$

@@ -1,0 +1,64 @@
+\documentclass[a4paper,titlepage]{report}
+\usepackage{titlesec, titletoc}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[hypertexnames=false]{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor=blue,
+	linkcolor=blue,
+	citecolor=blue
+}
+\usepackage{ctex}
+\usepackage{indentfirst}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{changepage}
+\renewcommand\thesection{\arabic {section}}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage[resetlabels,labeled]{multibib}
+\newcommand{\HUGE}{\fontsize{32pt}{32pt}\selectfont}
+% \setmainfont[Mapping=tex-text]{Times New Roman}
+\cfoot{\thepage}
+\begin{document}
+\begin{titlepage}
+\phantom{Start!}
+\vspace{-1.7cm}
+\begin{center}
+  \emph{\Large }\\[1.0cm]
+  \emph{\Large }\\[6.0cm]
+  { \HUGE 随机过程练习题} \\[1.0cm]
+  { \huge 问题 \&答案整理}\\[6.5cm]
+  { \large 问题 By Waiter } \\[0.2cm]
+  { \large 答案 By Waiter \& 李熹 \& CYB} \\[0.2cm]
+  { \large 整理 By CYB } \\[0.4cm]
+  { \large 2017.09.20 } \\[0.2cm]
+\end{center}
+\vfill
+\end{titlepage}
+\titleformat{\chapter}[hang]{\huge\bf}{\thechapter}{1em}{}
+\titleformat{\section}[hang]{\Large\bf}{题型\ \thesection}{0.5em}{}
+\titleformat{\subsection}[hang]{\large}{\thesubsection}{0.5em}{}
+\tableofcontents
+\newpage
+\part{问题}
+\include{sp-markov}
+\newpage
+\include{sp-two}
+\newpage
+\include{sp-gauss}
+\newpage
+\include{sp-possion}
+\part{参考解答}
+\include{spa-markov}
+\newpage
+\include{spa-two}
+\newpage
+\include{spa-gauss}
+\newpage
+\include{spa-possion}
+\end{document}

@@ -1,0 +1,182 @@
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+\chapter{泊松过程}
+
+\section{计算相关函数和功率谱密度}
+
+\subsection{\hyperref[Q2014-10]{【2014-10】}}\label{A2014-10}
+
+首先推导泊松过程中某段时间内发生事件次数为奇数或偶数的概率：
+
+P(奇数次)$=\sum_{k=0}^\infty P(N(t)=2k+1)=\sum_{k=0}^{\infty}\frac{(\lambda t)^{2k+1}}{(2k+1)!}e^{-\lambda t}$，P(偶数次)$=\sum_{k=0}^\infty P(N(t)=2k)=\sum_{k=0}^{\infty}\frac{(\lambda t)^{2k}}{(2k)!}e^{-\lambda t}$。易知 $e^{\lambda t}=\sum_{k=0}^\infty \frac{(\lambda t)^k}{k!}$，同理 $e^{-\lambda t}=\sum_{k=0}^\infty \frac{(-\lambda t)^k}{k!}$。两式求和可得：$e^{\lambda t}+e^{-\lambda t}=2\sum_{k=0}^\infty\frac{(\lambda t)^{2k}}{(2k)!}$。所以 P(偶数次)$=\sum_{k=0}^{\infty}\frac{(\lambda t)^{2k}}{(2k)!}e^{-\lambda t}=\frac{1+e^{-2\lambda t}}{2}$，而 P(奇数次) = 1 - P(偶数次) = $\frac{1-e^{-2\lambda t}}{2}$。以上结论在下文中不再证明，需要用到时直接给出。
+\\\\
+下面求解 $X(t)$ 的均值和相关系数：
+\begin{equation}\tag*{}
+\begin{split}
+&X(t)=A\cos(2\pi ft+\pi N(t))=A\cos2\pi ft\cos(\pi N(t))-A\sin2\pi ft\sin(\pi N(t))=A\cos2\pi ft\cos(\pi N(t))\\
+\therefore &E(X(t))=E(A\cos2\pi ft\cos(\pi N(t)))=\cos2\pi ftE(E(A\cos(\pi n)|N(t)=n))=\cos(2\pi ft)\cdot E(0)=0\\
+&\begin{split}E(X(t)X^*(s))&=E(A^2\cos2\pi ft\cos2\pi fs\cos(\pi N(t))\cos(\pi N(s)))\\
+&=\cos2\pi ft\cos2\pi fs\cdot E\left(A^2\frac{1}{2}(\cos(\pi(N(t)+N(s)))+\cos(\pi(N(t)-N(s))))\right)\\
+&=\cos2\pi ft\cos2\pi fs\cdot E\left(A^2\cos(\pi(N(t)-N(s)))\right)\\
+&=\cos2\pi ft\cos2\pi fs\cdot E\left(A^2(-1)\sum_{k=0}^\infty P(N(t)-N(s)=2k+1)+A^2\sum_{k=0}^\infty P(N(t)-N(s)=2k)\right)\\
+&=\cos2\pi ft\cos2\pi fs\cdot \frac{a^2}{2}\left((1+e^{-2\lambda|t-s|})-(1-e^{-2\lambda|t-s|})\right)\\
+&=a^2 \cos(2\pi ft)\cos(2\pi fs) e^{-2\lambda|t-s|}
+\end{split}
+\end{split}	
+\end{equation}
+
+\subsection{\hyperref[Q2007-3]{【2007-3】}}\label{A2007-3}
+由自相关函数的定义：
+\begin{equation}\tag*{}
+\begin{split}
+R_X(t, s)&=E(X(t)X^*(s))=E(Z^{N(t)+N(s)})=E(p\cdot 1^{N(t)+N(s)}+(1-p)\cdot(-1)^{N(t)+N(s)})\\
+&=p+(1-p)E\left(\sum_{k=0}^{\infty}P(N(t)+N(s)=2k)+(-1)\sum_{k=0}^{\infty}P(N(t)-N(s)=2k+1)\right)\\
+&=p+(1-p)e^{-2\lambda|t-s|}
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2007-4]{【2007-4】}}\label{A2007-4}
+由相关函数的定义：
+\begin{equation}\tag*{}
+\begin{split}
+&\begin{split}
+R_Y(t, s)&=E(Y(t)Y^*(s))=E(X_{N(t)}X_{N(s)})\\&=E(X^2_{N(t)}P(N(t)-N(s)=0)+X_{N(t)}X_{N(s)}P(N(t)-N(s)\neq0))\\
+&=e^{-\lambda|t-s|}(m^2+a^2)+(1-e^{-\lambda|t-s|})m^2=a^2e^{-\lambda|t-s|}+m^2
+\end{split}\\
+&\therefore R_Y(\tau)=a^2e^{-\lambda|\tau|}+m^2,\ S_Y(\omega)=\int_{-\infty}^{\infty}R_Y(\tau)e^{-j\omega\tau}d\tau=\frac{2a^2\lambda}{\lambda^2+\omega^2}+2\pi m^2\delta(\omega)
+\end{split}
+\end{equation}
+
+\section{泊松过程的和}
+
+\subsection{\hyperref[Q2010-3]{【2010-3】}}\label{A2010-3}
+
+P(男)$=\frac{\lambda}{\lambda+\mu}$，P(女)$=\frac{\mu}{\lambda+\mu}$
+$\therefore $P(性别不同)$=C_2^1\cdot$P(男)$\cdot$P(女)$=\frac{2\lambda\mu}{\lambda^2+\mu^2}$
+
+\subsection{\hyperref[Q2010-5]{【2010-5】}}\label{A2010-5}
+
+P(张最晚)$=P(t_1<t_2)\cdot P(t_2<t_1)+P(t_2<t_1)\cdot P(t_1<t_2)=\frac{\lambda}{\lambda+\mu}\frac{\mu}{\lambda+\mu}+\frac{\mu}{\lambda+\mu}\frac{\lambda}{\lambda+\mu}=\frac{2\lambda\mu}{(\lambda+\mu)^2}$
+
+\subsection{\hyperref[Q2008-1]{【2008-1】}}\label{A2008-1}
+
+令 $t_1=\min(T_1,\dots,T_N),\ t_2=\max(T_1,\dots,T_N)$，则题中所求概率为 $P(T_{N+1}+t_1\ge t_2)$。
+\begin{equation}\tag*{}
+\begin{split}
+P(T_{N+1}+t_1\ge t_2)&=\int_0^\infty\int_0^\infty\int_{t_1}^{t_1+T_{N+1}}f_{t_1,t_2}(t_1, t_2)\cdot f_{T_{N+1}}(t)dt_2dt_1dt\\
+&=\int_0^{\infty}\int_0^{\infty}\int_{t_1}^{t_1+T_{N+1}}N(N-1)\left(e^{-\lambda t_1}-e^{-\lambda t_2}\right)^{N-2}\lambda^2e^{-\lambda(t_1+t_2)}\lambda e^{-\lambda t}dt_2dt_1dt\\
+&=\frac{1}{N}
+\end{split}
+\end{equation}
+
+\section{顺序统计量}
+
+\subsection{\hyperref[Q2009-6]{【2009-6】}}\label{A2009-6}
+
+设 $t_A, t_B, t_C$ 为正常工作时间。令 $t_1=\min\{t_A, t_B, t_C\},\ t_2=\max\{t_A, t_B, t_C\}$。
+\begin{equation}\tag*{}
+\begin{split}
+F(T)&=P(t_2<T|t_1<S)=\frac{P(t_2<T, t_1<S|t_2>t_1)}{P(t_1<S)}\\
+&=\frac{\int_0^s\int_{t_1}^Tf_{t_1, t_2}(t_1, t_2)dt_2dt_1}{\int_0^sf_{t_1}(t_1)dt_1}=\frac{\int_0^s\int_{t_1}^T3\times2(e^{-\lambda t}-e^{-\lambda s})\lambda^2e^{-\lambda(t_1+t_2)}dt_2dt_1}{1-e^{-\lambda\cdot 3s}}\\
+&=\frac{1-e^{-3\lambda s}+3e^{-2\lambda T}(1-e^{-\lambda s})-3e^{-\lambda T}(1-e^{-2\lambda s})}{1-e^{-3\lambda s}}
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2008-2]{【2008-2】}}\label{A2008-2}
+
+$T_n=\max(T_1, \dots, T_n)\Rightarrow T_n>T_1>T_2,\ T_3,\cdots, T_{n-1}. \therefore P(M=n)=\frac{(n-2)!}{n!}=\frac{1}{n(n-1)}$。
+
+$\therefore E(T_1+\cdots+T_M)=E(E(T_1+\cdots+T_M|M=n))=E(\frac{n}{\lambda})=\frac{1}{\lambda}E_M(n)=\frac{1}{\lambda}\sum_{n=2}^\infty\frac{1}{n(n-1)}n=\frac{1}{\lambda}\sum_{n=1}^\infty\frac{1}{n}\rightarrow\infty$
+
+\subsection{\hyperref[Q2014-1]{【2014-1】}}\label{A2014-1}
+
+$P(A>t_A)=P(N(t)-N(t-t_A)=0)=e^{-\lambda t_A}\ (t_A\le t)$
+
+$P(B>t_B)=P(N(t)-N(t+t_B-t)=0)=e^{-\lambda t_B}$
+
+$\Rightarrow f_A(t_A)=\begin{cases}\frac{\lambda e^{-\lambda t_A}}{1-e^{-\lambda t}} & 0<t_A<t\\0 & else\end{cases},\ f_B(t_B)=\begin{cases}\lambda e^{-\lambda t_B} & t_B>0\\0 & else\end{cases}$
+
+$\therefore E(\min(A, B))=E(A|A<B)P(A<B)+E(B|A>B)P(A>B)$。下面分别求两项的值：
+
+\begin{equation}\tag*{}
+\begin{split}&
+\begin{split}
+F_{A|A<B}(\tau)&=P(A<\tau|A<B)=\frac{P(A<\tau, A<B)}{P(A<B)}\\&=
+\begin{cases}
+1 & \tau>t\\\int_0^\tau\int_{t_A}^\infty\frac{\lambda^2e^{-\lambda(t_A+t_B)}}{1-e^{-\lambda t}}dt_Bdt_A/P(A<B) & 0<\tau\le t
+\end{cases}\\
+&=\begin{cases}
+1 & \tau>t\\\frac{1-e^{-2\lambda \tau}}{2(1-e^{-\lambda t})P(A<B)} & 0<\tau\le t
+\end{cases}
+\end{split}\\
+&\Rightarrow f_{A|A<B}(\tau)=\begin{cases}\frac{\lambda e^{-2\lambda \tau}}{(1-e^{-\lambda t})P(A<B)} & 0<\tau\le t\\0&else\end{cases}\\
+&\Rightarrow E(A|A<B)P(A<B)=\int_0^t\frac{\lambda e^{-2\lambda \tau}}{1-e^{-\lambda t}}\tau d\tau=\frac{1}{1-e^{-\lambda t}}\left(-\frac{t}{2}e^{-2\lambda t}+\frac{1}{4\lambda}(1-e^{-2\lambda t})\right)
+\end{split}
+\end{equation}
+
+后一项的求法类似：
+\begin{equation}\tag*{}
+\begin{split}
+&\begin{split}
+F_{B|A>B}(\tau)&=P(B<\tau|A>B)=\frac{P(B<\tau, A>B)}{P(A>B)}\\
+&=\begin{cases}1&\tau>t\\\int_0^\tau\int_{t_B}^t\frac{\lambda^2e^{-\lambda(t_A+t_B)}}{1-e^{-\lambda t}}dt_Adt_B/P(A>B)&0<\tau\le t\end{cases}\\
+&=\begin{cases}1&\tau>t\\\frac{1-e^{-2\lambda \tau}-2e^{-\lambda t}(1-e^{-\lambda \tau})}{2(1-e^{-\lambda t})P(A>B)}&0<\tau\le t\end{cases}
+\end{split}\\
+&\Rightarrow f_{B|A>B}(\tau)=\begin{cases}\frac{\lambda e^{-2\lambda\tau}-\lambda e^{-\lambda t}e^{-\lambda\tau}}{(1-e^{-\lambda t})P(A>B)} & 0<\tau \le t\\
+0 & else
+\end{cases}\\
+&\begin{split}\Rightarrow E(B|A>B)P(A>B)&=\int_0^t\frac{\lambda e^{-2\lambda\tau}-\lambda e^{-\lambda t}e^{-\lambda\tau}}{1-e^{-\lambda t}}\tau d\tau\\&=\frac{1}{1-e^{-\lambda t}}\left(\frac{t}{2}e^{-2\lambda t}+\frac{1}{\lambda}(1-e^{-\lambda t})-\frac{3}{4\lambda}(1-e^{-2\lambda t})\right)\end{split}
+\end{split}
+\end{equation}
+\begin{equation}\tag*{}
+\begin{split}
+\therefore E(\min(A, B))&=\frac{1}{1-e^{-\lambda t}}\left(-\frac{t}{2}e^{-2\lambda t}+\frac{1}{4\lambda}(1-e^{-2\lambda t})+\frac{t}{2}e^{-2\lambda t}+\frac{1}{\lambda}(1-e^{-\lambda t})-\frac{3}{4\lambda}(1-e^{-2\lambda t})\right)\\
+&=\frac{1}{1-e^{-\lambda t}}\left(\frac{1}{\lambda}(1-e^{-\lambda t})-\frac{1}{2\lambda}(1-e^{-2\lambda t})\right)\\
+&=\frac{1}{1-e^{-\lambda t}}\left(\frac{1}{2\lambda}+\frac{1}{2\lambda}e^{-2\lambda t}-\frac{1}{\lambda}e^{-\lambda t}\right)
+\end{split}
+\end{equation}
+
+注：当 $t\rightarrow\infty$ 时，$E(\min(A, B))\rightarrow\frac{1}{2\lambda}$，对应物理情境为没有时间的左分界，结果为两个指数分布的最小值的期望。
+
+\section{其他}
+
+\subsection{\hyperref[Q2009-3]{【2009-3】}}\label{A2009-3}
+
+$P(N(t)-N(0)=2k)$，报酬为 $k$；$P(N(t)-N(0)=2k+1)$，报酬也为 $k$。
+\begin{equation}\tag*{}
+\begin{split}
+E(k)&=\sum_{k=0}^{\infty}P(N(t)-N(0)=2k)\cdot k+\sum_{k=0}^{\infty}P(N(t)-N(0)=2k+1)\cdot k\\
+&\begin{split}=&\frac{1}{2}\left(\sum_{k=0}^{\infty}P(N(t)-N(0)=2k)\cdot 2k+\sum_{k=0}^{\infty}P(N(t)-N(0)=2k+1)\cdot (2k+1)\right)\\&-\frac{1}{2}\left(\sum_{k=0}^{\infty}P(N(t)-N(0)=2k+1)\right)\end{split}\\
+&=\frac{1}{2}\sum_{k=1}^{\infty}P(N(t)-N(0)=k)\cdot k-\frac{1}{2}\sum_{k=0}^{\infty}P(N(t)-N(0)=2k+1)\\
+&=\frac{1}{2}\lambda t-\frac{1}{4}(1-e^{-2\lambda t})
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2007-8]{【2007-8】}}\label{A2007-8}
+
+$P(A>\tau)=P(N(t)-N(t-\tau)=0)=e^{-\lambda \tau}\ (\tau\le t)$
+
+$P(B>\tau)=P(N(t)-N(t+\tau-t)=0)=e^{-\lambda \tau}$
+
+$\Rightarrow F_{A(t)}(\tau)=\begin{cases}\frac{1-e^{-\lambda \tau}}{1-e^{-\lambda t}} & 0<\tau\le t\\1&\tau>t\\0 & else\end{cases},\ F_{B(t)}(\tau)=\begin{cases}1-e^{-\lambda \tau} & \tau>0\\0 & else\end{cases}$
+
+由泊松过程的马氏性可知 $A(t)$ 和 $B(t)$ 独立，所以：
+
+$F_{A(t),B(t)}(\tau_A, \tau_B)=\begin{cases}\frac{1-e^{-\lambda \tau_A}}{1-e^{-\lambda t}}(1-e^{-\lambda \tau_B}) & 0<\tau_A\le t\\1-e^{-\lambda \tau_B}&\tau_A>t,\ \tau_B>0\\0&else\end{cases}$
+
+$E(A(t)+B(t))=\int_0^t\frac{\lambda e^{-\lambda\tau}}{1-e^{-\lambda t}}d\tau+\frac{1}{\lambda}=\frac{2}{\lambda}-\frac{te^{-\lambda t}}{1-e^{-\lambda t}}$。
+
+\subsection{\hyperref[Q2014-6]{【2014-6】}}\label{A2014-6}
+
+（1）
+$A\sim PP(\lambda_At),\ B\sim PP(\lambda_Bt),\ C\sim PP(\lambda_Ct)$
+
+$\Rightarrow A+B+C\sim PP((\lambda_A+\lambda_B+\lambda_C)t)\Rightarrow E=(\frac{1}{3}\times1+\frac{2}{3}\times2)\times68\times1=\frac{340}{3}$
+
+（2）
+\begin{equation}\tag*{}\begin{split}P(A=\min(A, B, C))&=P(A<B, A<C)\\&=\int_0^\infty\int_A^\infty\int_A^\infty\lambda_Ae^{-\lambda_At_A}\lambda_Be^{-\lambda_Bt_B}\lambda_Ce^{-\lambda_Ct_C}dt_Bdt_Cdt_A\\&=\frac{\lambda_A}{\lambda_A+\lambda_B+\lambda_C}=\frac{21}{68}\end{split}\end{equation}
+
+（3）设跑完第 n 圈时刻为 $T_n$。已知在前 1/4 小时跑完了一圈，设 $A=\frac{1}{4}-T_1,\ B=T_2-\frac{1}{4}$，则 $A\sim [0, \frac{1}{4}]$，所以 $E(A)=\frac{1}{8}$；$B\sim Exp(\lambda_A)$，所以 $E(B)=\frac{1}{\lambda_A}=\frac{1}{21}$。
+
+$\therefore E(T_{round\ 2}）=E(A+B)=\frac{1}{8}+\frac{1}{21}=\frac{29}{168}$。

@@ -1,0 +1,128 @@
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+\chapter{相关理论与二阶矩过程}
+
+\section{}
+
+\subsection{\hyperref[Q2014-2]{【2014-2】}}\label{A2014-2}
+
+（1）
+\begin{equation}
+E\{X(t)\}=E\{a\cos(\omega t)+b\sin(\omega t)\}=E\{a\}\cos(\omega t)+E\{b\}\sin(\omega t) = 0
+\tag*{}
+\end{equation}
+\begin{equation}
+\begin{split}
+R_{xx}(t_1, t_2)&=E\{X(t_1)\cdot X^*(t_2)\}=E\{(a\cos\omega t_1+b\sin\omega t_1)(a\cos\omega t_2+b\sin\omega t_2)\}\\
+&=E\{a^2 \cos\omega t_1\cos\omega t_2+ab(\cos\omega t_1\sin\omega t_2+\sin\omega t_1\cos\omega t_2)+b^2\sin\omega t_1\sin\omega t_2\}\\
+&=E\{a^2\}\cos\omega t_1\cos\omega t_2 + E\{a\}E\{b\}(\dots)+E\{b^2\}\sin\omega t_1\sin\omega t_2\\
+&=\cos\omega t_1\cos\omega t_2+\sin\omega t_1\sin\omega t_2\\
+&=\cos\omega(t_1-t_2)
+\end{split}
+\tag*{}
+\end{equation}
+所以该过程为宽平稳过程。因为 $X(t)$ 是高斯过程，$X(t)$ 是宽平稳过程，所以是严平稳过程。
+\begin{equation}
+\begin{split}
+\lim_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^{T}(a\cos\omega t+\sin\omega t)dt&=\lim_{T\rightarrow\infty}\frac{1}{2T}(\frac{a}{\omega}\sin\omega t\biggr\rvert_{-T}^{T}-\frac{b}{\omega}\cos\omega t\biggr\rvert_{-T}^T)\\
+&=\lim_{T\rightarrow\infty}\frac{a}{\omega T}\sin\omega T=0=m_X
+\end{split}
+\tag*{}
+\end{equation}
+所以该过程为均值遍历过程。
+
+（2）
+\begin{equation}
+f_a(x)=f_b(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{x^2}{2}\right)}\rightarrow f_{a, b}(a, b)=\frac{1}{2\pi}\exp{\left(-\frac{a^2+b^2}{2}\right)}
+\tag*{}
+\end{equation}
+\begin{equation}
+\begin{split}
+X(t)&=a \cos\omega t + b \sin\omega t=\rho\cos(\omega t+\theta)\rightarrow \begin{cases}a=\rho\cos\theta\\b=-\rho\sin\theta\end{cases}\\
+&\rightarrow\left|\frac{\partial(a, b)}{\partial(\rho, \theta)}\right|=\left|\begin{matrix}\cos\theta&-\rho\sin\theta\\-\sin\theta&-\rho\cos\theta\end{matrix}\right|=-\rho\\
+&\therefore f_{\rho, \theta}(\rho, \theta)=f_{a, b}(a, b)\cdot\left|\frac{\partial(a, b)}{\partial(\rho, \theta)}\right|=\frac{\rho}{2\pi}\exp\left(-\frac{\rho^2}{2}\right)\\
+&\therefore f_\rho(\rho)=\int_0^{2\pi}f_{\rho, \theta}(\rho, \theta)d\theta=\rho\exp\left(-\frac{\rho^2}{2}\right)\ (\rho\geq0)\\
+&\ \ \ f_\theta(\theta)=\int_0^{\infty}f_{\rho, \theta}(\rho, \theta)d\rho=\frac{1}{2\pi}\ (0\leq\theta\leq2\pi)\\
+\end{split}
+\tag*{}
+\end{equation}
+$\because f_{\rho, \theta}(\rho, \theta)=f_\rho(\rho)f_\theta(\theta)\ \therefore \rho, \theta$ 统计独立。
+
+\subsection{\hyperref[Q2010-1]{【2010-1】}}\label{A2010-1}
+
+\begin{equation}
+\begin{split}
+S(\omega)&\xleftarrow{\text{F}}R_X(\tau)=R_Y(\tau),\ \ \rho(\omega)=S_{XY}(\omega)\xleftarrow{\text{F}}R_{XY}(\tau)\\
+R_Z(t_1, t_2)&=E\{Z(t_1)Z^*(t_2)\}\\
+&\ \begin{split}=E\{&[X(t_1)\cos(\omega_c t_1+\theta)+Y(t_1)\sin(\omega_ct_1+\theta)][X(t_2)\cos(\omega_c t_2+\theta)+Y(t_2)\sin(\omega_ct_2+\theta)]\}\end{split}\\
+&\ \begin{split}=E\{&X(t_1)X(t_2)\cos(\omega_c t_1+\theta)\cos(\omega_c t_2+\theta)+X(t_1)Y(t_2)\cos(\omega_c t_1+\theta)\sin(\omega_c t_2+\theta)\\
+					+&Y(t_1)X(t_2)\sin(\omega_c t_1+\theta)\cos(\omega_c t_2+\theta)+Y(t_1)Y(t_2)\sin(\omega_c t_1+\theta)\sin(\omega_c t_2+\theta)\}\end{split}\\
+&\ \begin{split}=&E\{X(t_1)X(t_2)\}\cos(\omega_c t_1+\theta)\cos(\omega_c t_2+\theta)+E\{X(t_1)Y(t_2)\}\cos(\omega_c t_1+\theta)\sin(\omega_c t_2+\theta)\\
+					+&E\{Y(t_1)X(t_2)\}\sin(\omega_c t_1+\theta)\cos(\omega_c t_2+\theta)+E\{Y(t_1)Y(t_2)\}\sin(\omega_c t_1+\theta)\sin(\omega_c t_2+\theta)\end{split}\\
+&\ \begin{split}=&R_X(t_2-t_1)\cos(\omega_c t_1+\theta)\cos(\omega_c t_2+\theta)+R_{XY}(t_2-t_1)\cos(\omega_c t_1+\theta)\sin(\omega_c t_2+\theta)\\
+					+&R_{YX}(t_2-t_1)\sin(\omega_c t_1+\theta)\cos(\omega_c t_2+\theta)+R_Y(t_2-t_1)\sin(\omega_c t_1+\theta)\sin(\omega_c t_2+\theta)\end{split}\\
+&\ \begin{split}=&R_X(t_2-t_1)(\cos(\omega_c t_1+\theta)\cos(\omega_c t_2+\theta)+\sin(\omega_c t_1+\theta)\sin(\omega_c t_2+\theta))\\
+					+&R_{XY}(t_2-t_1)(\sin(\omega_c t_2+\theta)\cos(\omega_c t_1+\theta)-\cos(\omega_c t_2+\theta)\sin(\omega_c t_1+\theta))\end{split}\\
+&=R_X(t_2-t_1)\cos(\omega_c t_1+\theta-\omega_c t_2-\theta) + R_{XY}(t_2-t_1)\sin(\omega_c t_2+\theta-\omega_c t_1-\theta)\\
+&=R_X(\tau)\cos(\omega_c\tau)+R_{XY}\sin(\omega_c\tau)
+\end{split}
+\tag*{}
+\end{equation}
+以上结果经过傅里叶变换可以得到：
+\begin{equation}\tag*{}
+\begin{split}
+S_Z(\omega)&=S(\omega)*\pi[\delta(\omega-\omega_c)+\delta(\omega+\omega_c)]+S_{XY}*[\delta(\omega-\omega_c)-\delta(\omega+\omega_c)]\\
+&=\pi[S(\omega-\omega_c)+S(\omega+\omega_c)]+\pi[S_{XY}(\omega-\omega_c)-S_{XY}(\omega+\omega_c)]
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2008-5]{【2008-5】}}\label{A2008-5}
+
+$X(t)$宽平稳，$\Rightarrow E\{X(t)\}=\mu_X, R_X(t_1, t_2)=R_X(\tau)$。
+\begin{equation}\tag*{}\begin{split}
+&\begin{split}\therefore E\{Y(t)\}&=E\left\{\int_t^{t+\theta}X(s)ds\right\}=E_\theta\left\{E\left\{\int_t^{t+\theta}X(s)ds\biggr\rvert\theta\right\}\right\}=E_\theta\left\{\int_t^{t+\theta}E
+\left\{X(s)\right\}ds\biggr\rvert\theta\right\}\\
+&=E_\theta\{\theta\cdot\mu_X\}=E\{\theta\}\cdot\mu_X=1.5\mu_X\end{split}\\
+&\begin{split}\ \ \ E\{Y(t)Y(s)\}&=E\left\{\int_t^{t+\theta}X(u)du\int_s^{s+\theta}X(v)dv\right\}=E_\theta\left\{E\left\{\int_t^{t+\theta}X(u)du\int_s^{s+\theta}X(v)dv\biggr\rvert\theta\right\}\right\}\\
+&=E_\theta\left\{\int_t^{t+\theta}\int_s^{s+\theta}E\left\{X(u)X(v)\right\}dudv\biggr\rvert\theta\right\}=E_\theta\left\{\int_t^{t+\theta}\int_s^{s+\theta}R(u-v)dudv\biggr\rvert\theta\right\}\\
+&\overset{u'=u-t}{\underset{v'=v-s}{=}}E\left\{\int_0^\theta\int_0^\theta R(u'-v'+t-s)du'dv'\right\}=f(t-s)\end{split}
+\end{split}
+\end{equation}
+所以 $Y(t)$ 为宽平稳。下面计算其功率谱密度：设 $x=u'-v', y=u'+v'$，则有
+\begin{equation}\tag*{}
+\int_0^\theta\int_0^\theta R(u'-v'+\tau)du'dv'=\int_{-\theta}^{\theta}\int_{|x|}^{2\theta-|x|}\frac{1}{2}R(x+\tau)dydx=\int_{-\theta}^{\theta}(\theta-|x|)R(x+\tau)dx
+\end{equation}
+\begin{equation}\tag*{}
+\begin{split}
+\therefore S_Y(\omega)&=\int_{-\infty}^{\infty}R_Y(\tau)e^{-j\omega\tau}d\tau=\int_{-\infty}^{\infty}E\left\{\int_{-\theta}^{\theta}(\theta-|x|)R(x+\tau)dx\right\}e^{-j\omega\tau}d\tau\\
+&=E\left\{\int_{-\theta}^{\theta}(\theta-|x|)dx\int_{-\infty}^{\infty}R(x+\tau)e^{-j\omega(x+\tau)}e^{j\omega x}d\tau\right\}=E\left\{\int_{-\theta}^{\theta}(\theta-|x|)S_X(\omega)e^{j\omega x}dx\right\}\\
+&=S_X(\omega)E\left\{\int_{-\theta}^{\theta}(\theta-|x|)e^{j\omega x}dx\right\}=S_X(\omega)E\left\{\int_{-\theta}^{0}(\theta+x)e^{j\omega x}dx+\int_{0}^{\theta}(\theta-x)e^{j\omega x}dx\right\}\\
+&=S_X(\omega)E\left\{\frac{1-j\theta\omega-e^{-j\theta\omega}}{\omega^2}+\frac{1+j\theta\omega-e^{j\theta\omega}}{\omega^2}\right\}=S_X(\omega)E\left\{\frac{2}{\omega^2}-\frac{2\cos\omega\theta}{\omega^2}\right\}\\
+&=S_X(\omega)\left(\frac{2}{\omega^2}-\int_1^2\frac{2\cos\omega\theta}{\omega^2}d\theta\right)=S_X(\omega)\left(\frac{2}{\omega^2}-\frac{2}{\omega^2}(\sin2\omega-\sin\omega)\right)
+\end{split}
+\end{equation}
+
+\section{}
+
+\subsection{\hyperref[Q2014-8]{【2014-8】}}\label{A2014-8}
+假设级数收敛，则期望的线性性质推广至无穷项相加：
+\begin{equation}\tag*{}
+\begin{split}
+E\{Y(t)\}&=E\left\{\sum_{k=-\infty}^{\infty}X_k\frac{\sin(\pi(t-kT)/T)}{\pi(t-kT)/T}\right\}=\sum_{k=-\infty}^{\infty}E\{X(t)\}\frac{\sin(\pi(t-kT)/T)}{\pi(t-kT)/T}\\
+&=\mu\sum_{k=-\infty}^{\infty}\frac{\sin(\pi(t-kT)/T)}{\pi(t-kT)/T}
+\end{split}
+\end{equation}
+由抽样定理 $f(t)=\sum_{k=-\infty}^{\infty}f(kT)Sa\left[\frac{\pi}{T}(t-kT)\right]$ 可知，$\sum_{k=-\infty}^{\infty}Sa\left[\pi(t-kT)/T\right]=1$。级数收敛假设成立，所以 $E\{Y(t)\}=\mu$。
+
+同样假设级数收敛，则有：
+\begin{equation}\tag*{}
+\begin{split}
+R_Y(t_1, t_2)&=E\{Y(t_1)Y(t_2)\}=E\left\{\sum_{k=-\infty}^{\infty}X_k\frac{\sin(\pi(t_1-kT)/T)}{\pi(t_1-kT)/T}\cdot\sum_{k=-\infty}^{\infty}X_k\frac{\sin(\pi(t_2-kT)/T)}{\pi(t_2-kT)/T}\right\}\\
+&=E\left\{\sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}X_mX_n\frac{\sin(\pi(t_1-mT)/T)}{\pi(t_1-mT)/T}\frac{\sin(\pi(t_2-nT)/T)}{\pi(t_2-nT)/T}\right\}\\
+&=\sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}E\{X_mX_n\}\frac{\sin(\pi(t_1-mT)/T)}{\pi(t_1-mT)/T}\frac{\sin(\pi(t_2-nT)/T)}{\pi(t_2-nT)/T}\\
+&=\sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}R(n-m)\frac{\sin(\pi(t_1-mT)/T)}{\pi(t_1-mT)/T}\frac{\sin(\pi(t_2-nT)/T)}{\pi(t_2-nT)/T}\\
+&=\sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}R\left(\frac{nT-mT}{T}\right)\frac{\sin(\pi(t_1-mT)/T)}{\pi(t_1-mT)/T}\frac{\sin(\pi(t_2-nT)/T)}{\pi(t_2-nT)/T}=R\left(\frac{t_2-t_1}{T}\right)
+\end{split}
+\end{equation}
+由于均值和时间无关，相关函数只和时间差有关，所以该过程为宽平稳。

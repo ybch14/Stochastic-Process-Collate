@@ -1,0 +1,312 @@
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+\chapter{高斯过程}
+
+\section{计算相关函数和功率谱密度}
+
+\subsection{\hyperref[Q2010-2]{【2010-2】}}\label{A2010-2}
+相关函数为：
+\begin{equation}\tag*{}
+\begin{split}
+R_Y(t, s)&=E(Y(t)Y^*(s))=E(\cos(\omega_c t+\theta+X(t))\cos(\omega_cs+\theta+X(s)))\\
+&=E((\cos(\omega_ct+X(t))\cos\theta-\sin(\omega_ct+X(t))\sin\theta)(\cos(\omega_cs+X(s))\cos\theta-\sin(\omega_cs+X(s))\sin\theta))\\
+&=\frac{1}{2}E(\cos(\omega_c\tau+X(t)-X(s)))=\frac{1}{2}\cos\omega_c\tau E(\cos(X(t)-X(s)))-\frac{1}{2}\sin\omega_c\tau E(\sin(X(t)-X(s)))
+\end{split}
+\end{equation}
+令 $Z(t)=X(t+\tau)-X(t)$， 易有 $Z(t)\sim(0, a^2)$， 其中 $a^2=E(Z^2(t))-EZ^2=E(X^2(t+\tau)+X^2(t)-2X(t+\tau)X(t))=2(R(0)-R(\tau))$。
+\begin{equation}\tag*{}
+\begin{split}
+&\therefore R_Y(t, s)=\frac{1}{2}\cos\omega_c\tau\frac{E(e^{jZ(t)})+E(e^{jZ(t)})}{2}-\frac{1}{2}\sin\omega_c\tau\frac{E(e^{jZ(t)})-E(e^{jZ(t)})}{2j}=\frac{1}{2}\cos\omega_c\tau e^{-\frac{1}{2}a^2}\\
+&\therefore R_Y(t, s)=\frac{1}{2}\cos\omega_c\tau e^{(R(\tau)-R(0))}
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2009-7]{【2009-7】}}\label{A2009-7}
+求相关函数和功率谱密度：
+\begin{equation}\tag*{}
+\begin{split}
+R_X(t, s)&=E(X(t)X^*(s))=E(\cos(\omega t+\theta)\cos(\omega s+\theta))=\frac{1}{2}E(\cos\omega\tau)=\frac{1}{4}(E(e^{j\omega\tau})+E(e^{-j\omega\tau}))\\
+&=\frac{1}{4}\left(e^{j\mu\tau-\frac{a^2\tau^2}{2}}+e^{-j\mu\tau-\frac{a^2\tau^2}{2}}\right)=\frac{1}{2}e^{-\frac{a^2\tau^2}{2}}\cos\omega\tau\\
+S_X(\omega)&=\int_{-\infty}^{\infty}R_X(\tau)e^{-j\omega\tau}d\tau=\frac{1}{4}\sqrt{\frac{2\pi}{a^2}}\left(e^{-\frac{(\omega+\mu)^2}{2a^2}}+e^{-\frac{(\omega-\mu)^2}{2a^2}}\right)
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2007-6]{【2007-6】}}\label{A2007-6}
+由功率谱密度可以计算得到相关函数：
+\begin{equation}\tag*{}
+\begin{split}
+S_X(\omega)=\frac{1}{\omega^2+1}\Rightarrow R_X(\tau)=\frac{1}{2}e^{-|\tau|}\Rightarrow Var(X)=E(X^2)-EX^2=E(X^2)=R_X(0)=\frac{1}{2}
+\end{split}
+\end{equation}
+$\therefore X\sim N(0, \frac{1}{2})$。由相关函数的定义：$R_Y(t, s)=E(Y(t)Y^*(s))=E(e^{\alpha(X(t)+X(s))})$。令 $Z(t)=X(t+\tau)+X(t)$，则 $Z(t)\sim N(0, a_Z^2), \ a_Z^2=E(Z^2(t))=E(X^2(t+\tau)+X^2(t)+2X(t+\tau)X(t))=2(R_X(0)+R_X(\tau))$。
+$$
+\therefore R_Y(t, s)=E(e^{j\frac{\alpha}{j}Z(t)})=e^{-\frac{a_Z^2}{2}\left(\frac{\alpha}{j}\right)^2}=e^{\alpha^2(R_X(0)+R_X(\tau))}=e^{\frac{\alpha^2}{2}(1+e^{-|\tau|})}
+$$
+
+\subsection{\hyperref[Q2014-5]{【2014-5】}}\label{A2014-5}
+由相关函数定义：
+\begin{equation}\tag*{}
+\begin{split}
+R_Z(t, s)=E(\sin^3Y(t)\sin^3Y(s))=E\left\{\left(\frac{e^{j(Y(t)-Y(s))}+e^{-j(Y(t)-Y(s))}-e^{j(Y(t)+Y(s))}-e^{-j(Y(t)+Y(s))}}{4}\right)^3\right\}
+\end{split}
+\end{equation}
+令 $\begin{cases}U=e^{j(Y(t)-Y(s))}\\V=e^{j(Y(t)+Y(s))}\end{cases}$，则
+\begin{equation}\tag*{}
+\begin{split}
+R_Z(t, s)&=\frac{1}{64}E\left\{((U+U^{-1})-(V+V^{-1}))^3\right\}\\
+&=\frac{1}{64}(E(U^3)+E(3U)+E(3U^{-1})+E(U^{-3})-E(U^3)-E(3U)-E(3U^{-1})-E(U^{-3}\\
+&+3(-E(U^2V)-E(U^2V^{-1})-E(U^{-2}V)-E(U^{-2}V^{-1})-2E(V)-2E(V^{-1})\\
+&+E(UV^2)+E(UV^{-2}+E(U^{-1}V^{2}+E(U^{-1}V^{-2})+2E(V)+2E(V^{-1})))
+\end{split}
+\end{equation}
+$E(Y(t))=E(\int_0^tX(s)ds=0,\ R_Y(t, s)=E\left(\int_0^t\int_0^sX(u)X(v)dudv\right)=a\sigma^2\min(s, t)$。因为 $X(t)$ 是高斯过程，所以 $Y(t)$ 是零均值高斯过程。而 $E(AY(t)+BY(s))=0,\ E((AY(t)+BY(s))^2)=\sigma^2(A^2t+B^2s+2AB\min(s, t))$。记 $e^{j(AY(t)+BY(s))}=m_{A, B}$，则 $E(m_{A,B})=e^{-\frac{1}{2}\sigma^2(A^2t+B^2s+2AB\min(s, t))}$，易有 $m_{A,B}=m_{-A, -B}$。
+\begin{equation}\tag*{}
+\begin{split}
+&\begin{split}\therefore R_Z(t, s)=&\frac{1}{64}(E(m_{3, -3})+E(m_{-3, 3})-E(m_{3, 3})-E(m_{-3, -3})+9(-E(m_{1, 1})-E(m_{-1, -1})+E(m_{-1, 1})\\&+E(m_{1, -1}))+3(-E(m_{3, -1})+E(m_{1,3})+E(m_{3, -1})-E(m_{-1, 3})+E(m_{-3, 1})-E(m_{1, -3})\\&+E(m_{-1, -3})-E(m_{-3, -1})))\end{split}\\
+&\begin{split}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =&\frac{1}{32}(E(m_{3, -3})-E(m_{3, 3})+9(-E(m_{1, 1})+E(m_{1, -1}))+3(-E(m_{3, 1})\\&+E(m_{3, -1})+E(m_{1, 3})-E(m_{1, -3})))\end{split}\\
+&\begin{split}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =&\frac{1}{32}\left(e^{-\frac{9}{2}\sigma^2|t-s|}-e^{-\frac{9}{2}\sigma^2(t+s+2\min(s, t))}+9\left(e^{-\frac{\sigma^2}{2}|t-s|}-e^{-\frac{\sigma^2}{2}(t+s+2\min(s, t))}\right)\right.\\
+&+3\left(-e^{-\frac{\sigma^2}{2}(9t+s+6\min(s, t))}+e^{-\frac{\sigma^2}{2}(9t+s-6\min(s, t))}+\left.e^{-\frac{\sigma^2}{2}(t+9s+6\min(s, t))}-e^{-\frac{\sigma^2}{2}(t+9s-6\min(s, t))}\right)\right)\end{split}
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2014-3]{【2014-3】}}\label{A2014-3}
+由题意可知，$X$ 与 $e^{jYt}$ 独立，所以 $E(Z(t))=E(Xe^{jYt})=E(X)E(e^{jYt})=0$。相关函数为 $R_Z(t, s)=E(Z(t)Z^*(s))=E(X^2e^{jY\tau})=E(e^{jY\tau})=\frac{1}{1-j\tau}$。由均值和相关函数的形式可知 $Z(t)$ 为宽平稳过程。有相关函数易得功率谱密度：
+$$
+S_Z(\omega)=\int_{-\infty}^{\infty}R_Z(\tau)e^{-j\omega\tau}d\tau=\frac{1}{2\pi}e^{-\omega}u(\omega)
+$$
+
+\section{计算条件分布}
+
+\subsection{\hyperref[Q2010-7]{【2010-7】}}\label{A2010-7}
+
+$f_{X|U}(x|u)=\frac{f_{X,U}(x,u)}{f_U(u)},\ f_{X|V}(x|v)=\frac{f_{X, V}(x, v)}{f_V(v)}$，因此想要求这两个条件分布，只需要求出两个分式中的四个分布。下面分别求解:
+
+求 $f_U(U)$:
+\begin{equation}\tag*{}
+U=Y^3\Rightarrow Y=U^{\frac{1}{3}}, (-\infty, \infty)\Rightarrow f_U(u)=\frac{1}{\sqrt{2\pi}\sigma_X^2}e^{\frac{(u^{\frac{1}{3}}-\mu_Y)^2}{2\sigma_Y^2}}\cdot\frac{1}{3}u^{-\frac{2}{3}}
+\end{equation}
+
+求 $f_{X,U}(x,u)$:
+\begin{equation}\tag*{}
+\begin{cases}X=X\\Y=U^{\frac{1}{3}}\end{cases}\Rightarrow
+|J|=\left|\frac{\partial(X, Y)}{\partial(X, U)}\right|=\frac{1}{3}U^{-\frac{2}{3}}\end{equation}
+\begin{equation}\tag*{}
+\Rightarrow f_{X, U}(x, u)=\frac{\frac{1}{3}u^{-\frac{2}{3}}}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}e^{-\frac{1}{2\sqrt{1-\rho^2}}\left[\frac{(x-\mu_X)^2}{\sigma_X^2}+\frac{(u^{\frac{1}{3}}-\mu_Y)^2}{\sigma_Y^2}-2\rho\frac{(x-\mu_X)(u^{\frac{1}{3}}-\mu_Y)}{\sigma_X\sigma_Y}\right]}
+\end{equation}
+
+求 $f_V(v)$:
+\begin{equation}\tag*{}
+\begin{split}
+V=Y^2\Rightarrow F_V(v)=P(V\leq v)=P(-v^{\frac{1}{2}}<Y<v^\frac{1}{2})=F_Y(v^\frac{1}{2})-F_Y(-v^\frac{1}{2}) (v\ge 0)
+\end{split}
+\end{equation}
+\begin{equation}\tag*{}
+\begin{split}
+\Rightarrow f_V(v)=\frac{1}{2\sqrt{v}}(f_Y(v^\frac{1}{2})+f_Y(-v^\frac{1}{2}))=\frac{\frac{1}{2}v^{-\frac{1}{2}}}{\sqrt{2\pi}\sigma_Y}\left(e^{\frac{(v^\frac{1}{2}-\mu_Y)^2}{2\sigma_Y^2}}+e^{\frac{(-v^\frac{1}{2}-\mu_Y)^2}{2\sigma_Y^2}}\right)\ (v\in[0, \infty))
+\end{split}
+\end{equation}
+
+求 $f_{X, V}(x, v)$:
+\begin{equation}\tag*{}
+\begin{split}
+F_{X,V}(x,v)=P(X\le x, V\le v)=P(X\le x, -v^{\frac{1}{2}}\le Y\le v^{\frac{1}{2}})=F_{X, Y}(x, v^\frac{1}{2})-F_{X, Y}(x, -v^\frac{1}{2})
+\end{split}
+\end{equation}
+\begin{equation}\tag*{}
+\begin{split}
+\Rightarrow f_{X, V}(x, v)=&\frac{1}{2\sqrt{v}}(f_{X, Y}(x,v^\frac{1}{2})+f_{X, Y}(x, -v^\frac{1}{2}))\\
+=&\frac{v^{-\frac{1}{2}}}{4\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}\left(e^{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_X)^2}{\sigma_X^2}+\frac{(v^{\frac{1}{2}}-\mu_Y)^2}{\sigma_Y^2}-2\rho\frac{(x-\mu_X)(v^{\frac{1}{2}}-\mu_Y)}{\sigma_X\sigma_Y}\right]}\right.\\
+&+\left.e^{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_X)^2}{\sigma_X^2}+\frac{(-v^{\frac{1}{2}}-\mu_Y)^2}{\sigma_Y^2}-2\rho\frac{(x-\mu_X)(-v^{\frac{1}{2}}-\mu_Y)}{\sigma_X\sigma_Y}\right]}\right)
+\end{split}
+\end{equation}
+最终结果略。
+
+\subsection{\hyperref[Q2008-4]{【2008-4】}}\label{A2008-4}
+
+设随机矢量 $(X(T), X(0))$，则可以求得其均值向量 $\mu_0=(0, 0)$ 和协方差矩阵$\Sigma=\left(\begin{matrix}R_X(0)&R_X(\tau)\\R_X(\tau)&R_X(0)\end{matrix}\right)=\left(\begin{matrix}1&e^{-\alpha|\tau|}\\e^{-\alpha|\tau|}&1\end{matrix}\right)$。
+\begin{equation}\tag*{}
+\begin{split}
+\therefore \mu&\overset{\Delta}{=}E(X(T)|X(0))=0+e^{-\alpha|\tau|}/1\cdot(X(0)-0)=e^{-\alpha|\tau|}X(0)\\
+\sigma^2&\overset{\Delta}{=}Var(X(T)|X(0))=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}=1-e^{-2\alpha|\tau|}
+\end{split}
+\end{equation}
+\begin{equation}\tag*{}
+\begin{split}
+\therefore E(X(T)^4|X(0))=\mu^4+6\mu^2\sigma^2+3\sigma^4=e^{-4\alpha|\tau|}X(0)^4+6e^{-2\alpha|\tau|}X(0)^2(1-e^{-2\alpha|\tau|})+3(1-e^{-2\alpha|\tau|})^2
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2014-4]{【2014-4】}}\label{A2014-4}
+
+设随机矢量 $(X(2), X(3), X(4))$，则可以求得其均值向量和协方差矩阵：
+\begin{equation}\tag*{}
+\begin{split}
+\mu_0=\left(\begin{matrix}0\\0\\0\end{matrix}\right), \Sigma=\left(\begin{matrix}R_X(0)&R_X(1)&R_X(2)\\R_X(1)&R_X(0)&R_X(1)\\R_X(2)&R_X(1)&R_X(0)\end{matrix}\right)=\left(\begin{matrix}5&0&-\frac{5}{9}\\0&5&0\\\frac{5}{9}&0&5\end{matrix}\right)
+\end{split}
+\end{equation}
+设 $Y=X(2)+X(4)$，则$E(X(3)Y)=E(X(2)X(3))+E(X(3)X(4))=0$。
+\begin{equation}\tag*{}
+\begin{split}
+\therefore E(X(3)|Y)&= E(X(3))+E(X(3)Y)E(Y^2)^{-1}(Y-E(Y))=0\\
+\Sigma_{X(3)|Y}&=E(X(3)^2)-E(X(3)Y)E(Y^2)^{-1}E(YX(3))=E(X(3)^2)=5
+\end{split}
+\end{equation}
+\begin{equation}\tag*{}
+\begin{split}
+\Rightarrow&X(3)|Y\sim N(0, 5)
+\Rightarrow Var(X(3)|Y)=E(X(3)^2|Y)-E(X(3)|Y)^2=5\\
+\Rightarrow&E(X(3)^2|(X(2)+X(4)))=5
+\end{split}
+\end{equation}
+设 $U=X(2)+X(3),\ v=X(2)+X(4)$，则
+\begin{equation}\tag*{}
+\begin{split}
+E(U^2)=E(X(2)^2+X(3)^2+2X(2)X(3))=10,\ E(V^2)=E(X(2)^2+X(4)^2+2X(2)X(4))=\frac{80}{9}
+\end{split}
+\end{equation}
+\begin{equation}\tag*{}
+\begin{split}
+E(UV)=E(X(2)^2+X(2)X(4)+X(2)X(3)+X(3)X(4))=5-\frac{5}{9}=\frac{40}{9}
+\end{split}
+\end{equation}
+$\therefore E((X(2)+X(3))|(X(2)+X(4)))=E(U)+E(UV)E(V^2)^{-1}(V-EV)=\frac{40}{9}\times\frac{9}{80}V=\frac{1}{2}(X(2)+X(4))$
+
+\section{线性滤波器设计}
+
+\subsection{}
+
+\subsection{\hyperref[Q2009-8]{【2009-8】}}\label{A2009-8}
+
+设随机矢量 $(Y(0), Y(1), Y(2))$，则可以计算其均值和协方差矩阵：
+\begin{equation}\tag*{}
+\begin{split}
+\mu_0=\left(\begin{matrix}0\\0\\0\end{matrix}\right),
+\Sigma=\left(\begin{matrix}p&q&r\\q&p&q\\r&q&p\end{matrix}\right)
+\end{split}
+\end{equation}
+其中 $p=R_Y(0), q=R_Y(1), r=R_Y(2)$。
+\begin{equation}\tag*{}
+\begin{split}
+\mu_{Y(1), Y(3)|Y(2)}&=\left(\begin{matrix}0\\0\end{matrix}\right)+\left(\begin{matrix}q\\q\end{matrix}\right)p^{-1}(Y(2)-0)=\frac{q}{p}Y(2)\left(\begin{matrix}1\\1\end{matrix}\right)\\
+\Sigma_{Y(1), Y(3)|Y(2)}&=\left(\begin{matrix}p&r\\r&p\end{matrix}\right)-\left(\begin{matrix}q\\q\end{matrix}\right)p^{-1}\left(\begin{matrix}q&q\end{matrix}\right)=\left(\begin{matrix}p-\frac{q^2}{p}&r-\frac{q^2}{p}\\r-\frac{q^2}{p}&p-\frac{q^2}{p}\end{matrix}\right)
+\end{split}
+\end{equation}
+由协方差定义：$\Sigma_{XY}=E((X-EX)(Y-EY))\Rightarrow\Sigma_{XY}=E(XY)-EXEY\Rightarrow E(XY)=EXEY+\Sigma_{XY}$
+\begin{equation}\tag*{}
+\begin{split}
+\therefore E(Y(1)Y(3)|Y(2))=\mu_{Y(1)|Y(2)}\cdot\mu_{Y(3)|Y(2)}+\Sigma_{Y(1), Y(3)|Y(2)}=\left(\frac{q}{p}Y(2)\right)^2+\left(r-\frac{q^2}{p}\right)
+\end{split}
+\end{equation}
+由题中条件可知 $\frac{q}{p}=c, r-\frac{q^2}{p}=0$。设计一个三阶低通滤波器 $Y(n)=u_1X(n)+u_2X(n-1)+u_3X(n-2)$。注意到 $X(t)$ 为高斯白噪声，所以 $R_X(\tau)=\frac{N_0}{2}\delta{\tau}$，所以有
+$$
+p=R_Y(0)=u_1^2+u_2^2+u_3^2,\ q=R_Y(1)=u_1u_2+u_2u_3,\ r=R_Y(2)=u_1u_3
+$$
+联立以上所有方程可以得到：
+\begin{equation}\tag*{}
+\begin{split}&
+\begin{cases}
+q=pc\\r=c^2p\\p=u_1^2+u_2^2+u_3^2\\q=u_1u_2+u_2u_3\\r=u_1u_3
+\end{cases}
+\xrightarrow{p=1}
+\begin{cases}
+q=c,\ r=c^2\\u_1+u_2+u_3=\sqrt{p+2q+2r}\\u_1-u_2+u_3=\sqrt{p-2q+2r}\\u_1u_3=r
+\end{cases}\\
+&\xrightarrow{a=\frac{\sqrt{p+2q+2r}+\sqrt{p-2q+2r}}{2}}
+\begin{cases}
+u_1=\frac{1}{2}(a+\sqrt{a^2-4r})\\u_2=\frac{1}{2}(\sqrt{1+2c+2c^2}-\sqrt{1-2c+2c^2})\\u_3=\frac{1}{2}(a-\sqrt{a^2-4r})
+\end{cases}
+\end{split}
+\end{equation}
+综上，
+\begin{equation}\tag*{}
+\begin{split}
+H(z)=\frac{1}{u_1+u_2z^{-1}+u_3z^{-2}}, \ \begin{cases}
+u_1=\frac{1}{2}(a+\sqrt{a^2-4r})\\u_2=\frac{1}{2}(\sqrt{1+2c+2c^2}-\sqrt{1-2c+2c^2})\\u_3=\frac{1}{2}(a-\sqrt{a^2-4r})
+\end{cases},\ a=\frac{\sqrt{1+2c+2c^2}+\sqrt{1-2c+2c^2}}{2}
+\end{split}
+\end{equation}
+
+\section{坐标变换}
+
+\subsection{\hyperref[Q2009-2]{【2009-2】}}\label{A2009-2}
+
+$X_1=R\cos\phi,\ X_2=R\cos\phi$
+$$\Rightarrow
+f(R, \phi)=\frac{1}{2\pi}e^{-\frac{1}{2\pi\sqrt{1-\rho^2}}R^2(1-2\rho\cos\phi\sin\phi)}\cdot R=\frac{1}{2\pi}Re^{-\frac{1}{2\pi\sqrt{1-\rho^2}}R^2(1-\rho\sin2\phi)}, \ R>0,\ \phi\in[0, 2\pi)
+$$
+$$
+\Rightarrow f(\phi)=\int_0^\infty f(R, \phi)dR=\frac{\sqrt{1-\rho^2}}{2\pi(1-\rho\sin 2\phi)},\ \phi\in[0, 2\pi)
+$$
+
+$P(X_1X_2>0)=P(\frac{1}{2}R^2\sin2\phi>0)=P(0<\phi<\frac{\pi}{2})+P(\pi<\phi<\frac{3\pi}{2})$
+\begin{equation}\tag*{}
+\begin{split}
+&=\frac{\sqrt{1-\rho^2}}{2\pi}\left(\int_0^\frac{\pi}{2}\frac{1}{1-\rho\sin 2\phi}d\phi+\int_\pi^\frac{3\pi}{2}\frac{1}{1-\rho\sin 2\phi}d\phi\right)\\
+&=\frac{\sqrt{1-\rho^2}}{\pi}\left(\int_0^\frac{\pi}{2}\frac{1}{1-\rho\sin 2\phi}d\phi\right)=\frac{\sqrt{1-\rho^2}}{\pi}\int_0^\frac{\pi}{2}\frac{1+\tan^2\phi}{1+\tan^2\phi-2\rho\tan\phi}d\phi\\
+&\overset{x=\tan\phi}{=}\frac{\sqrt{1-\rho^2}}{\pi}\int_0^\infty\frac{1+x^2}{1+x^2-2\rho x}\frac{1}{1+x^2}dx=\frac{1}{\pi\sqrt{1-\rho^2}}\int_0^\infty\frac{1}{(\frac{x-\rho}{\sqrt{1-\rho^2}})^2+1}dx\\
+&\overset{y=\frac{x-\rho}{\sqrt{1-\rho^2}}}{=}\frac{1}{\pi}\int_{-\frac{\rho}{\sqrt{1-\rho^2}}}^{\infty}\frac{1}{y^2+1}dy=\frac{1}{\pi}\left(\frac{\pi}{2}-\arctan\left(\frac{-\rho}{\sqrt{1-\rho^2}}\right)\right)=\frac{1}{2}+\frac{1}{\pi}\arctan\left(\frac{\rho}{\sqrt{1-\rho^2}}\right)
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2008-3]{【2008-3】}}\label{A2008-3}
+
+设 $R=\sqrt{X^2+Y^2},\ \Phi=\arctan\frac{Y}{X}\Rightarrow X=R\cos\phi,\ Y=R\sin\phi$，则
+\begin{equation}\tag*{}
+\begin{split}
+f_{R, \Phi}(r, \phi)&=\frac{1}{2\pi}e^{-\frac{1}{2}[(r\cos\phi-m_1)^2+(r\sin\phi-m_2)^2]}\cdot R\\
+\Rightarrow f_R(r)&=\frac{R}{2\pi}e^{-\frac{1}{2}(r^2+m_1^2+m_2^2)}\int_0^{2\pi}e^{r(m_1\cos\phi-m_2\sin\phi)}d\phi\\
+&=Re^{-\frac{1}{2}(r^2+m_1^2+m_2^2)}I_0\left(r\sqrt{m_1^2+m_2^2}\right),\ I_0(Z)=\frac{1}{2\pi}\int_0^{2\pi}e^{Z\cos\theta}d\theta
+\end{split}
+\end{equation}
+$R$ 服从 Rice 分布。
+
+\section{其他}
+
+\subsection{\hyperref[Q2010-8]{【2010-8】}}\label{A2010-8}
+
+由于 $V$ 和 $Y$ 独立，所以$E(VY^T)=EVEY$。
+$$
+E(VY^T)=E(XY^T-GYY^T)=E(XY^T)-GE(YY^T)=\Sigma_{XY}+EXEY-G\Sigma_{YY}-G(EY)^2
+$$
+$$
+E(V)=E(X-GY)=EX-GEY\Rightarrow EVEY=EXEY-G(EY)^2\Rightarrow G=\Sigma_{XY}\Sigma_{YY}^{-1}
+$$
+\begin{equation}\tag*{}
+\begin{split}&
+\therefore EV=EX-\Sigma_{XY}\Sigma_{YY}^{-1}EY\\
+&\ \ \ \ \begin{split}
+\Sigma_{VV}&=E((V-EV)(V-EV)^T)=E(((X-EX)-G(Y-EY))((X-EX)-G(Y-EY))^T)\\
+&=\Sigma_{XX}-G\Sigma_{YX}-\Sigma_{XY}G^T+G\Sigma_{YY}G^T\\
+&=\Sigma_{XX}-\Sigma_{XY}\Sigma_{YY}^{-1}\Sigma_{YX}-\Sigma_{XY}\Sigma_{YY}^{-1}\Sigma_{YX}+\Sigma_{XY}\Sigma_{YY}^{-1}\Sigma_{YY}\Sigma_{YY}^{-1}\Sigma_{YX}\\
+&=\Sigma_{XX}-\Sigma_{XY}\Sigma_{YY}^{-1}\Sigma_{YX}\end{split}\\
+&\therefore f_V(v_1, v_2, \dots, v_n)=\frac{1}{(2\pi)^{\frac{n}{2}}\sqrt{|\Sigma_{VV}|}}e^{-\frac{1}{2}(V-EV)^T\Sigma_{VV}^{-1}(V-EV)}
+\end{split}
+\end{equation}
+
+\subsection{\hyperref[Q2009-1]{【2009-1】}}\label{A2009-1}
+
+$E(c_1X_1+c_2X_2)^2=c_1^2+c_2^2+2c_1c_2E(X_1X_2)$。
+$$
+\max_{c_1^2+c_2^2=1}E(c_1X_1+c_2X_2)^2=1\Rightarrow E(X_1X_2)=0 \Rightarrow E((X_1-EX_1)(X_2-EX_2)^*)=\rho\sigma_1\sigma_2=\rho=0
+$$
+$\Rightarrow X_1,\ X_2$ 独立，$E(X_1^2X_2^2)=E(X_1^2)E(X_2^2)=1$。
+
+\subsection{\hyperref[Q2007-5]{【2007-5】}}\label{A2007-5}
+
+令 $Y_1=X^2$，则 $f_{Y_1}(y_1)=y_1e^{-\frac{y_1^2}{2}},\ y_1\ge 0 \Rightarrow X^2$ 服从 Rayleigh 分布，则 $Y_1$ 为 Gauss 分布。
+
+\noindent
+$\therefore \phi_Y(\omega)=e^{j\omega^T\mu-\frac{1}{2}\omega^T\Sigma\omega}$。下面分别求 $\mu$ 和 $\Sigma$。
+\begin{equation}\tag*{}
+\begin{split}
+&\mu_{i}=E(Y(t_i))=E(X^2\cos(\omega t_i+U))=E(X^2)E(\cos(\omega t_i+U))=0\\
+&\begin{split}\Sigma_{ij}&=E((Y(t_i)-EY(t_i))(Y(t_j)-EY(t_j))^*)=E(Y(t_i)Y^*(t_j))\\
+&=E(X^4\cos(\omega t_i+U)(\omega t_j+U))=\frac{1}{2}E(X^4)\cos\omega(t_i-t_j)=\frac{1}{2}E(X^4)\cos\omega\tau\\
+&=\frac{1}{2}\cos\omega\tau\left(\int_0^\infty x^7e^{-\frac{x^4}{2}}dx-\int_\infty^0x^7e^{-\frac{x^4}{2}}dx\right)=\cos\omega\tau\int_0^\infty x^7e^{-\frac{x^4}{2}}dx\\&\overset{y=x^4}{=}\frac{1}{4}\int_0^\infty ye^{-\frac{y}{2}}dy=\cos\omega\tau\end{split}
+\end{split}
+\end{equation}
+$\therefore \mu=(0, 0, \dots, 0)^T, \Sigma=(\cos\omega(t_i-t_j))_{m\times n}$
+
+\noindent
+$\therefore \phi_Y(\omega)=e^{-\frac{1}{2}\omega^T\Sigma\omega},\ \Sigma=(\cos\omega(t_i-t_j))_{m\times n}$

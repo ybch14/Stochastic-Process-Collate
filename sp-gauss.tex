@@ -1,0 +1,105 @@
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+\chapter{高斯过程}
+
+\section{计算相关函数和功率谱密度}
+
+\subsection{\hyperref[A2010-2]{【2010-2】}}\label{Q2010-2}
+
+设 $X(t)$ 为零均值宽平稳高斯过程，相关函数为 $R(\tau)$。$\theta$ 是 $[0, 2\pi]$ 上的均匀分布随机变量，且与 $X(t)$ 独立，$\omega_c$ 为常数，试计算
+$$
+Y(t)=\cos(\omega_ct+\theta+X(t))
+$$
+的相关函数。
+
+\subsection{\hyperref[A2009-7]{【2009-7】}}\label{Q2009-7}
+
+设 $\omega$ 服从 $N(\mu, \sigma^2)$，$\theta$ 服从 $[0, 2\pi]$ 的均匀分布，两者互相独立。试计算随机过程 $X(t)=\cos(\omega t+\theta)$ 的相关函数和功率谱密度。
+
+\subsection{\hyperref[A2007-6]{【2007-6】}}\label{Q2007-6}
+
+设零均值宽平稳高斯过程 $X(t)$ 的功率谱密度为 $S_X(\omega)=\frac{1}{\omega^2 + 1}$，请计算 $Y(t)=e^{\alpha X(t)}$ 的相关函数。
+
+\subsection{\hyperref[A2014-5]{【2014-5】}}\label{Q2014-5}
+
+设 $X(s)$ 为零均值高斯白噪声，$E(X^2(t))=\sigma^2$，考虑
+$$
+Y(t)=\int_0^tX(s)ds, \ Z(t)=\sin^3(Y(t))
+$$
+试计算 $Z(t)$ 的相关函数。
+
+\subsection{\hyperref[A2014-3]{【2014-3】}}\label{Q2014-3}
+
+设 $X, Y$ 是两个独立的实随机变量，$X$ 服从标准正态分布，$Y$ 服从参数为 1 的指数分布。设
+$$
+Z(t)=Xe^{jYt}, \ -\infty<t<\infty
+$$
+试问 $\{Z(t)\}$ 是否宽平稳？若是，求其自相关函数 $R_Z(\tau)$，功率谱密度 $S_Z(\omega)$。
+\\\\
+\section{计算条件分布}
+
+\subsection{\hyperref[A2010-7]{【2010-7】}}\label{Q2010-7}
+
+设 $X$ 和 $Y$ 为服从联合高斯分布的一维随机变量，方差分别为 $\sigma_X^2$ 和 $\sigma_Y^2$，相关系数为 $\rho$。设 $U=Y^3, V=Y^2$，试计算条件概率密度 $f_{X|U}(x|u)$ 和 $f_{X|V}(x|v)$。
+
+\subsection{\hyperref[A2008-4]{【2008-4】}}\label{Q2008-4}
+
+考虑零均值宽平稳高斯过程 $X(t)$，相关函数为 $e^{-\alpha|\tau|}$，设 T 为确定的时间常数，试求 $E(X^4(T)|X(0))$。
+
+\subsection{\hyperref[A2014-4]{【2014-4】}}\label{Q2014-4}
+
+设 $\{X(t),\ -\infty<t<\infty\}$ 是零均值高斯过程，自相关函数为 $R_X(\tau)=5\cos(\frac{\pi\tau}{2})3^{-|\tau|}$，试求
+
+（1）$E\left[(X(3))^2|(X(2)+X(4))\right]=?$
+
+（2）$E\left[(X(2)+X(3))|(X(2)+X(4))\right]=?$
+\\\\
+\section{线性滤波器设计}
+
+\subsection{\hyperref[A2007-7]{【2007-7】}}\label{Q2007-7}
+
+考虑零均值宽平稳 Gaussian 白噪声 $X(t)$，对于给定的$\Delta t$，请设计一款线性时不变滤波器（给出其传递函数），使得 $X(t)$ 通过该滤波器后得到的随机过程 
+ $Y(t)$ 满足：$Y(t)$ 的采样过程$\{Y_n=Y(n\Delta t),n\in N\}$仍然是 Gaussian 白噪声。 
+
+\subsection{\hyperref[A2009-8]{【2009-8】}}\label{Q2009-8}
+设 $X(t)$ 是零均值高斯白嗓声，功率密度为$N_0/2$。试设计一款线性滤波器，使得 $X(t)$ 通过该滤波器后的输出 $Y(t)$ 满足
+$$
+E(Y(1)Y(3)|Y(2))=CY^2(2)
+$$
+其中C是确定性常数。
+\\\\
+\section{坐标变换} 
+\subsection{\hyperref[A2009-2]{【2009-2】}}\label{Q2009-2} 
+设 $(X_1, X_2)$ 为服从联合高斯分布的随机变量，均值均为 0 ，方差均为 1 ,相关系数为 $\rho$。如果将 $X_1$ 和 $X_2$ 用极坐标进行表示
+$$
+X_1=R\cos(\phi), \ X_2=R\sin(\phi)
+$$
+试计算 $\phi$ 的密度函数，并利用该密度，计算 $P(X_1X_2>0)$。
+
+\subsection{\hyperref[A2008-3]{【2008-3】}}\label{Q2008-3}
+
+令 $X,Y$ 为独立的 Gaussian 分布随机变量，均值分别为$m_1, m_2$，方差均为 1 ,试求 $\sqrt{X^2+Y^2}$ 的概率密度。
+\\\\
+\section{其他}
+
+\subsection{\hyperref[A2010-8]{【2010-8】}去相关}\label{Q2010-8}
+
+设 $X$ 和 $Y$ 为服从联合高斯分布的 n 维随机变量，协方差阵分别为 $\Sigma_X$ 和 $\Sigma_Y$，互协方差阵为 $\Sigma_{XY}$ 和 $\Sigma_{YX}$，试构造矩阵 $G$ 和 n 维随机变量 $V$ ，使得 $X=GY+V$，且满足 $V$ 与 $Y$ 独立（请给出 $V$ 的密度的解析表达式和 $G$ 的具体形式）。
+
+\subsection{\hyperref[A2009-1]{【2009-1】}计算均值和相关}\label{Q2009-1}
+
+设 $(X_1, X_2)$ 为服从联合高斯分布的随机变量，均值均为 0，方差均为 1，相关
+系数为 $\rho$。如果
+$$
+\max_{c_1^2+c_2^2=1}E(c_1X_1+c_2X_2)^2=1
+$$
+其中 $c_1$ 和 $c_2$ 为实数，试计算 $\rho$ 以及 $E(X_1^2X_2^2)$。
+
+\subsection{\hyperref[A2007-5]{【2007-5】}计算特征函数}\label{Q2007-5}
+
+设 $U$ 是 $[0, 2\pi]$ 均匀分布的随机变量，随机变量 $X$ 独立于 $U$，且密度为
+$$
+f_X(x)=|x|^3e^{-\frac{x^4}{2}}, \ x\in\mathbb{R}
+$$
+设随机过程 $Y(t)=X^2\cos(\omega t+U)$，计算 $Y(t_1), Y(t_2), \dots, Y(t_n))$ 的 n 维特征函数。

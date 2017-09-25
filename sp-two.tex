@@ -1,0 +1,48 @@
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+\chapter{相关理论与二阶矩过程}
+
+\section{}
+
+\subsection{\hyperref[A2014-2]{【2014-2】}}\label{Q2014-2}
+
+设随机过程 $X(t)=a \cos(\omega t) + b \sin(\omega t)$，其中 $\omega$ 为正常数，$a,b$是独立同分布的随机变量，服从 $N(0, 1)$，记 $X(t)=\rho \cos(\omega t+ \theta)$。
+
+（1）求 $X(t)$ 的均值和自相关函数，问此过程是否为宽平稳过程？是否为严平稳过程？是否均值遍历？
+
+（2）求随机变量 $\rho, \theta$ 的分布密度函数，问 $\rho, \theta$ 是否统计独立？
+
+\subsection{\hyperref[A2010-1]{【2010-1】}}\label{Q2010-1}
+
+设零均值宽平稳随机过程 $X(t)$ 和 $Y(t)$ 有相同的功率谱密度 $S(\omega)$，且两者间联合平稳，互谱密度为 $\rho(\omega)$，$\theta$ 是 $[0, 2\pi]$ 上的均匀分布随机变量，且与 $X(t), Y(t)$ 独立，$\omega_c$ 为常数，试计算：
+$$
+Z(t)=X(t)\cos(\omega_c t+\theta)+Y(t)\sin(\omega_ct+\theta)
+$$
+的功率谱密度。
+
+\subsection{\hyperref[A2008-5]{【2008-5】}}\label{Q2008-5}
+
+设 $X(t)$ 为宽平稳随机过程，$\theta$ 为与 $X(t)$ 独立的随机变量，服从 $[1, 2]$ 区间上的均匀分布。定义
+$$
+Y(t)=\int_t^{t+\theta}X(s)ds
+$$
+试判断其是否宽平稳。如果答案是肯定的，计算其功率谱密度。
+\\\\
+\section{}
+
+\subsection{\hyperref[A2014-8]{【2014-8】}}\label{Q2014-8}
+
+设离散时间宽平稳随机过程 $\{X_k\}$，均值为 $\mu$，相关函数为 $R(n)$。考虑连续时间随机过程 $Y(t)$，
+$$
+Y(t)=\sum_{k=-\infty}^\infty X_k \frac{\sin(\pi(t-kT)/T)}{\pi(t-kT)/T}
+$$
+请计算 $Y(t)$ 的均值和相关函数，并判断其宽平稳性。
+
+\subsection{【2008-6】}\label{Q2008-6}
+
+考虑随机过程 $X(t)=\cos(2\pi t+\theta)$，其中 $\theta$ 为服从 $[0, 2\pi]$ 区间上均匀分布的随机变量。试计算下述均方意义下的极限
+$$
+\lim_{T\rightarrow \infty}\frac{1}{2T}\int_{-T}^TX(t)dt
+$$
+（注意：如果没有考虑“均方意义”，直接当作普通极限做，不得分。）
